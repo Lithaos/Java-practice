@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class checkbinary {
+	private static int count;
+
 	public static void main(String[] args) {
 		int num;
 		System.out.println("Enter a number:");
 		Scanner sc = new Scanner(System.in);
 		num = sc.nextInt();
-		int count = 0;
+		count = 0;
 		int help = num;
 		boolean bin = true;
 		while (help > 0) {
