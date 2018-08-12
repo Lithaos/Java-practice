@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+// Adding some changes
 public class Area {
 
 	private static Scanner sc;
