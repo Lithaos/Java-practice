@@ -210,12 +210,50 @@ public class JFrame extends javax.swing.JFrame {
 		contentPane.add(btnSubstract);
 
 		JButton btnMultiple = new JButton("*");
+		btnMultiple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(memory.getText().equals(""))
+				{
+					Operations.firstVar=Integer.parseInt(display.getText());
+					memory.setText(display.getText());
+					display.setText("");
+				}
+				else if(!memory.getText().equals("") && !display.getText().equals(""))
+				{
+					Operations.secondVar=Integer.parseInt(display.getText());
+					Operations.switcher(Operations.operation);
+					memory.setText(Double.toString(Operations.result));
+					display.setText("");
+					Operations.firstVar = (int)Operations.result;
+				}
+					Operations.operation = 3;
+			}
+		});
 
 		btnMultiple.setBackground(Color.LIGHT_GRAY);
 		btnMultiple.setBounds(250, 179, 50, 23);
 		contentPane.add(btnMultiple);
 
 		JButton btnDivide = new JButton("/");
+		btnDivide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(memory.getText().equals(""))
+				{
+					Operations.firstVar=Integer.parseInt(display.getText());
+					memory.setText(display.getText());
+					display.setText("");
+				}
+				else if(!memory.getText().equals("") && !display.getText().equals(""))
+				{
+					Operations.secondVar=Integer.parseInt(display.getText());
+					Operations.switcher(Operations.operation);
+					memory.setText(Double.toString(Operations.result));
+					display.setText("");
+					Operations.firstVar = (int)Operations.result;
+				}
+					Operations.operation = 4;
+			}
+		});
 
 		btnDivide.setBackground(Color.LIGHT_GRAY);
 		btnDivide.setBounds(250, 152, 50, 23);
