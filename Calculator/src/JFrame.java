@@ -169,7 +169,7 @@ public class JFrame extends javax.swing.JFrame {
 					memory.setText(display.getText());
 					display.setText("");
 				}
-				else
+				else if(!memory.getText().equals("") && !display.getText().equals(""))
 				{
 					Operations.secondVar=Integer.parseInt(display.getText());
 					Operations.switcher(Operations.operation);
@@ -185,6 +185,26 @@ public class JFrame extends javax.swing.JFrame {
 		contentPane.add(btnAdd);
 
 		JButton btnSubstract = new JButton("-");
+		btnSubstract.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(memory.getText().equals(""))
+				{
+					Operations.firstVar=Integer.parseInt(display.getText());
+					memory.setText(display.getText());
+					display.setText("");
+				}
+				else if(!memory.getText().equals("") && !display.getText().equals(""))
+				{
+					Operations.secondVar=Integer.parseInt(display.getText());
+					Operations.switcher(Operations.operation);
+					memory.setText(Double.toString(Operations.result));
+					display.setText("");
+					Operations.firstVar = (int)Operations.result;
+				}
+					Operations.operation = 2;
+			}
+		});
 		btnSubstract.setBackground(Color.LIGHT_GRAY);
 		btnSubstract.setBounds(250, 238, 50, 23);
 		contentPane.add(btnSubstract);
@@ -201,6 +221,7 @@ public class JFrame extends javax.swing.JFrame {
 		btnDivide.setBounds(250, 152, 50, 23);
 		contentPane.add(btnDivide);
 
+		
 		JButton btnResult = new JButton("=");
 		btnResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,6 +229,10 @@ public class JFrame extends javax.swing.JFrame {
 				{
 				Operations.secondVar=Integer.parseInt(display.getText());
 				Operations.switcher(Operations.operation);
+				memory.setText(Double.toString(Operations.result));
+				display.setText("");
+				Operations.firstVar=(int)Operations.result;
+				Operations.operation=0;
 				}
 			}
 		});
