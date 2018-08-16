@@ -14,6 +14,7 @@ import java.awt.SystemColor;
 
 public class JFrame extends javax.swing.JFrame {
 
+	protected static final int NULL = 0;
 	private JPanel contentPane;
 	private JTextField display;
 	private JTextField memory;
@@ -159,6 +160,26 @@ public class JFrame extends javax.swing.JFrame {
 		contentPane.add(btnDel);
 
 		JButton btnAdd = new JButton("+");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(memory.getText().equals(""))
+				{
+					Operations.firstVar=Integer.parseInt(display.getText());
+					memory.setText(display.getText());
+					display.setText("");
+				}
+				else
+				{
+					Operations.secondVar=Integer.parseInt(display.getText());
+					Operations.switcher(Operations.operation);
+					memory.setText(Double.toString(Operations.result));
+					display.setText("");
+					Operations.firstVar = (int)Operations.result;
+				}
+					Operations.operation = 1;
+			}
+		});
 		btnAdd.setBackground(Color.LIGHT_GRAY);
 		btnAdd.setBounds(250, 213, 50, 23);
 		contentPane.add(btnAdd);
@@ -181,6 +202,15 @@ public class JFrame extends javax.swing.JFrame {
 		contentPane.add(btnDivide);
 
 		JButton btnResult = new JButton("=");
+		btnResult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Operations.firstVar!=NULL && !display.getText().equals(""))
+				{
+				Operations.secondVar=Integer.parseInt(display.getText());
+				Operations.switcher(Operations.operation);
+				}
+			}
+		});
 		btnResult.setBackground(Color.LIGHT_GRAY);
 		btnResult.setBounds(190, 152, 50, 110);
 		contentPane.add(btnResult);

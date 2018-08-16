@@ -25,12 +25,16 @@ public class Operations extends JFrame{
 		{
 		case 1:
 			result=add();
+			break;
 		case 2:
 			result=substract();
+			break;
 		case 3:
 			result=multiple();
+			break;
 		case 4:
 			result=divide();
+			break;
 		}
 	}
 	
