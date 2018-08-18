@@ -19,7 +19,7 @@ public class Game extends JPanel {
 			for(int i=0;i<9;i++)
 			{
 				buttons[i] = new JButton();
-				buttons[i].setText(""+i);
+				buttons[i].setText("");
 				buttons[i].addActionListener(new buttonListener());
 				
 				add(buttons[i]);
@@ -35,6 +35,8 @@ public class Game extends JPanel {
 		class buttonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
             	JButton buttonClicked = (JButton)e.getSource();
+            	if(buttonClicked.getText().equals(""))
+            	{
             	if(player%2==0)
             	{
             		buttonClicked.setText("X");
@@ -45,10 +47,11 @@ public class Game extends JPanel {
             	}
             	if(winCheck())
             	{
-            		JOptionPane.showConfirmDialog(null, "Game Over.");
+            		JOptionPane.showConfirmDialog(null, "Koniec Gry.");
                     buttonReset();
             	}
             	player++;
+            	}
             }
             /*
              *  |0|1|2|
