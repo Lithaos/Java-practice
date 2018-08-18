@@ -1,16 +1,15 @@
-import java.awt.EventQueue;
-
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class JFrame extends javax.swing.JFrame {
 
@@ -155,6 +154,20 @@ public class JFrame extends javax.swing.JFrame {
 				display.setText("");
 			}
 		});
+
+		JButton btnClear = new JButton("CE");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				display.setText("");
+				memory.setText("");
+				Operations.firstVar = NULL;
+				Operations.secondVar = NULL;
+				Operations.operation = 0;
+				Operations.result = NULL;
+			}
+		});
+		btnClear.setBounds(109, 57, 71, 23);
+		contentPane.add(btnClear);
 		btnDel.setBackground(Color.LIGHT_GRAY);
 		btnDel.setBounds(10, 57, 89, 23);
 		contentPane.add(btnDel);
@@ -162,24 +175,34 @@ public class JFrame extends javax.swing.JFrame {
 		JButton btnAdd = new JButton("+");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(memory.getText().equals(""))
-				{
-					Operations.firstVar=Integer.parseInt(display.getText());
+
+				if (memory.getText().equals("")) {
+					Operations.firstVar = Integer.parseInt(display.getText());
 					memory.setText(display.getText());
 					display.setText("");
-				}
-				else if(!memory.getText().equals("") && !display.getText().equals(""))
-				{
-					Operations.secondVar=Integer.parseInt(display.getText());
+				} else if (!memory.getText().equals("") && !display.getText().equals("")) {
+					Operations.secondVar = Integer.parseInt(display.getText());
 					Operations.switcher(Operations.operation);
 					memory.setText(Double.toString(Operations.result));
 					display.setText("");
-					Operations.firstVar = (int)Operations.result;
+					Operations.firstVar = (int) Operations.result;
 				}
-					Operations.operation = 1;
+				Operations.operation = 1;
 			}
 		});
+
+		JButton btnBackspace = new JButton("<-");
+		btnBackspace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String displayText = display.getText();
+				if (displayText.length() > 0) {
+					displayText = displayText.substring(0, displayText.length() - 1);
+					display.setText(displayText);
+				}
+			}
+		});
+		btnBackspace.setBounds(190, 57, 89, 23);
+		contentPane.add(btnBackspace);
 		btnAdd.setBackground(Color.LIGHT_GRAY);
 		btnAdd.setBounds(250, 213, 50, 23);
 		contentPane.add(btnAdd);
@@ -187,22 +210,19 @@ public class JFrame extends javax.swing.JFrame {
 		JButton btnSubstract = new JButton("-");
 		btnSubstract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(memory.getText().equals(""))
-				{
-					Operations.firstVar=Integer.parseInt(display.getText());
+
+				if (memory.getText().equals("")) {
+					Operations.firstVar = Integer.parseInt(display.getText());
 					memory.setText(display.getText());
 					display.setText("");
-				}
-				else if(!memory.getText().equals("") && !display.getText().equals(""))
-				{
-					Operations.secondVar=Integer.parseInt(display.getText());
+				} else if (!memory.getText().equals("") && !display.getText().equals("")) {
+					Operations.secondVar = Integer.parseInt(display.getText());
 					Operations.switcher(Operations.operation);
 					memory.setText(Double.toString(Operations.result));
 					display.setText("");
-					Operations.firstVar = (int)Operations.result;
+					Operations.firstVar = (int) Operations.result;
 				}
-					Operations.operation = 2;
+				Operations.operation = 2;
 			}
 		});
 		btnSubstract.setBackground(Color.LIGHT_GRAY);
@@ -212,21 +232,18 @@ public class JFrame extends javax.swing.JFrame {
 		JButton btnMultiple = new JButton("*");
 		btnMultiple.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(memory.getText().equals(""))
-				{
-					Operations.firstVar=Integer.parseInt(display.getText());
+				if (memory.getText().equals("")) {
+					Operations.firstVar = Integer.parseInt(display.getText());
 					memory.setText(display.getText());
 					display.setText("");
-				}
-				else if(!memory.getText().equals("") && !display.getText().equals(""))
-				{
-					Operations.secondVar=Integer.parseInt(display.getText());
+				} else if (!memory.getText().equals("") && !display.getText().equals("")) {
+					Operations.secondVar = Integer.parseInt(display.getText());
 					Operations.switcher(Operations.operation);
 					memory.setText(Double.toString(Operations.result));
 					display.setText("");
-					Operations.firstVar = (int)Operations.result;
+					Operations.firstVar = (int) Operations.result;
 				}
-					Operations.operation = 3;
+				Operations.operation = 3;
 			}
 		});
 
@@ -237,21 +254,18 @@ public class JFrame extends javax.swing.JFrame {
 		JButton btnDivide = new JButton("/");
 		btnDivide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(memory.getText().equals(""))
-				{
-					Operations.firstVar=Integer.parseInt(display.getText());
+				if (memory.getText().equals("")) {
+					Operations.firstVar = Integer.parseInt(display.getText());
 					memory.setText(display.getText());
 					display.setText("");
-				}
-				else if(!memory.getText().equals("") && !display.getText().equals(""))
-				{
-					Operations.secondVar=Integer.parseInt(display.getText());
+				} else if (!memory.getText().equals("") && !display.getText().equals("")) {
+					Operations.secondVar = Integer.parseInt(display.getText());
 					Operations.switcher(Operations.operation);
 					memory.setText(Double.toString(Operations.result));
 					display.setText("");
-					Operations.firstVar = (int)Operations.result;
+					Operations.firstVar = (int) Operations.result;
 				}
-					Operations.operation = 4;
+				Operations.operation = 4;
 			}
 		});
 
@@ -259,24 +273,48 @@ public class JFrame extends javax.swing.JFrame {
 		btnDivide.setBounds(250, 152, 50, 23);
 		contentPane.add(btnDivide);
 
-		
 		JButton btnResult = new JButton("=");
 		btnResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Operations.firstVar!=NULL && !display.getText().equals(""))
-				{
-				Operations.secondVar=Integer.parseInt(display.getText());
-				Operations.switcher(Operations.operation);
-				memory.setText(Double.toString(Operations.result));
-				display.setText("");
-				Operations.firstVar=(int)Operations.result;
-				Operations.operation=0;
+				if (Operations.firstVar != NULL && !display.getText().equals("")) {
+					Operations.secondVar = Integer.parseInt(display.getText());
+					Operations.switcher(Operations.operation);
+					memory.setText(Double.toString(Operations.result));
+					display.setText("");
+					Operations.firstVar = (int) Operations.result;
+					Operations.operation = 0;
 				}
 			}
 		});
 		btnResult.setBackground(Color.LIGHT_GRAY);
 		btnResult.setBounds(190, 152, 50, 110);
 		contentPane.add(btnResult);
+
+		JButton btnNewButton = new JButton("+/-");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!display.getText().equals("")) {
+				int temp = Integer.parseInt(display.getText());
+				temp *= -1;
+				display.setText(Integer.toString(temp));
+				}
+			}
+		});
+		btnNewButton.setBounds(10, 274, 50, 50);
+		contentPane.add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("x2\t");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!display.getText().equals("")) {
+				int power = Integer.parseInt(display.getText());
+				power = (int)Math.pow(power, 2);
+				display.setText(Integer.toString(power));
+				}
+			}
+		});
+		btnNewButton_1.setBounds(190, 91, 50, 50);
+		contentPane.add(btnNewButton_1);
 
 		display = new JTextField();
 		display.setBackground(Color.WHITE);
