@@ -36,6 +36,7 @@ public class JFrame extends javax.swing.JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 364);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.control);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -48,7 +49,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn0.setBackground(Color.LIGHT_GRAY);
+		btn0.setBackground(SystemColor.window);
 		btn0.setBounds(70, 274, 50, 50);
 		contentPane.add(btn0);
 
@@ -58,7 +59,7 @@ public class JFrame extends javax.swing.JFrame {
 				display.setText(display.getText() + btn1.getText());
 			}
 		});
-		btn1.setBackground(Color.LIGHT_GRAY);
+		btn1.setBackground(SystemColor.window);
 		btn1.setBounds(10, 213, 50, 50);
 		contentPane.add(btn1);
 
@@ -69,7 +70,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn2.setBackground(Color.LIGHT_GRAY);
+		btn2.setBackground(SystemColor.window);
 		btn2.setBounds(70, 213, 50, 50);
 		contentPane.add(btn2);
 
@@ -80,7 +81,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn3.setBackground(Color.LIGHT_GRAY);
+		btn3.setBackground(SystemColor.window);
 		btn3.setBounds(130, 213, 50, 50);
 		contentPane.add(btn3);
 
@@ -90,7 +91,7 @@ public class JFrame extends javax.swing.JFrame {
 				display.setText(display.getText() + btn4.getText());
 			}
 		});
-		btn4.setBackground(Color.LIGHT_GRAY);
+		btn4.setBackground(SystemColor.window);
 		btn4.setBounds(10, 152, 50, 50);
 		contentPane.add(btn4);
 
@@ -101,7 +102,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn5.setBackground(Color.LIGHT_GRAY);
+		btn5.setBackground(SystemColor.window);
 		btn5.setBounds(70, 152, 50, 50);
 		contentPane.add(btn5);
 
@@ -112,7 +113,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn6.setBackground(Color.LIGHT_GRAY);
+		btn6.setBackground(SystemColor.window);
 		btn6.setBounds(130, 152, 50, 50);
 		contentPane.add(btn6);
 
@@ -122,7 +123,7 @@ public class JFrame extends javax.swing.JFrame {
 				display.setText(display.getText() + btn7.getText());
 			}
 		});
-		btn7.setBackground(Color.LIGHT_GRAY);
+		btn7.setBackground(SystemColor.window);
 		btn7.setBounds(10, 91, 50, 50);
 		contentPane.add(btn7);
 
@@ -133,7 +134,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn8.setBackground(Color.LIGHT_GRAY);
+		btn8.setBackground(SystemColor.window);
 		btn8.setBounds(70, 91, 50, 50);
 		contentPane.add(btn8);
 
@@ -144,7 +145,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btn9.setBackground(Color.LIGHT_GRAY);
+		btn9.setBackground(SystemColor.window);
 		btn9.setBounds(130, 91, 50, 50);
 		contentPane.add(btn9);
 
@@ -156,6 +157,7 @@ public class JFrame extends javax.swing.JFrame {
 		});
 
 		JButton btnClear = new JButton("CE");
+		btnClear.setBackground(SystemColor.window);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				display.setText("");
@@ -168,7 +170,7 @@ public class JFrame extends javax.swing.JFrame {
 		});
 		btnClear.setBounds(109, 57, 71, 23);
 		contentPane.add(btnClear);
-		btnDel.setBackground(Color.LIGHT_GRAY);
+		btnDel.setBackground(SystemColor.window);
 		btnDel.setBounds(10, 57, 89, 23);
 		contentPane.add(btnDel);
 
@@ -192,6 +194,7 @@ public class JFrame extends javax.swing.JFrame {
 		});
 
 		JButton btnBackspace = new JButton("<-");
+		btnBackspace.setBackground(SystemColor.window);
 		btnBackspace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String displayText = display.getText();
@@ -203,7 +206,7 @@ public class JFrame extends javax.swing.JFrame {
 		});
 		btnBackspace.setBounds(190, 57, 89, 23);
 		contentPane.add(btnBackspace);
-		btnAdd.setBackground(Color.LIGHT_GRAY);
+		btnAdd.setBackground(SystemColor.window);
 		btnAdd.setBounds(250, 213, 50, 23);
 		contentPane.add(btnAdd);
 
@@ -225,7 +228,7 @@ public class JFrame extends javax.swing.JFrame {
 				Operations.operation = 2;
 			}
 		});
-		btnSubstract.setBackground(Color.LIGHT_GRAY);
+		btnSubstract.setBackground(SystemColor.window);
 		btnSubstract.setBounds(250, 238, 50, 23);
 		contentPane.add(btnSubstract);
 
@@ -247,7 +250,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btnMultiple.setBackground(Color.LIGHT_GRAY);
+		btnMultiple.setBackground(SystemColor.window);
 		btnMultiple.setBounds(250, 179, 50, 23);
 		contentPane.add(btnMultiple);
 
@@ -269,7 +272,7 @@ public class JFrame extends javax.swing.JFrame {
 			}
 		});
 
-		btnDivide.setBackground(Color.LIGHT_GRAY);
+		btnDivide.setBackground(SystemColor.window);
 		btnDivide.setBounds(250, 152, 50, 23);
 		contentPane.add(btnDivide);
 
@@ -286,11 +289,12 @@ public class JFrame extends javax.swing.JFrame {
 				}
 			}
 		});
-		btnResult.setBackground(Color.LIGHT_GRAY);
+		btnResult.setBackground(SystemColor.window);
 		btnResult.setBounds(190, 152, 50, 110);
 		contentPane.add(btnResult);
 
 		JButton btnNewButton = new JButton("+/-");
+		btnNewButton.setBackground(SystemColor.window);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!display.getText().equals("")) {
@@ -303,7 +307,8 @@ public class JFrame extends javax.swing.JFrame {
 		btnNewButton.setBounds(10, 274, 50, 50);
 		contentPane.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("x2\t");
+		JButton btnNewButton_1 = new JButton("x²");
+		btnNewButton_1.setBackground(SystemColor.window);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!display.getText().equals("")) {
@@ -315,6 +320,21 @@ public class JFrame extends javax.swing.JFrame {
 		});
 		btnNewButton_1.setBounds(190, 91, 50, 50);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnsqrt = new JButton("√");
+		btnsqrt.setBackground(SystemColor.window);
+		btnsqrt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!display.getText().equals("")) {
+					int sqrt = Integer.parseInt(display.getText());
+					sqrt = (int)Math.sqrt(sqrt);
+					display.setText(Integer.toString(sqrt));
+					}
+				
+			}
+		});
+		btnsqrt.setBounds(250, 91, 50, 50);
+		contentPane.add(btnsqrt);
 
 		display = new JTextField();
 		display.setBackground(Color.WHITE);
