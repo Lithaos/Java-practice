@@ -353,6 +353,27 @@ public class JFrame extends javax.swing.JFrame {
 		memory.setBounds(190, 11, 110, 20);
 		contentPane.add(memory);
 		memory.setColumns(10);
+		
+		JButton btnPercent = new JButton("%");
+		btnPercent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int percent;
+				
+				if(!memory.getText().equals(""))
+					{
+						double memor = Double.parseDouble(memory.getText()); 
+						if(!display.getText().equals(""))
+						{
+							percent = Integer.parseInt(display.getText())/100;
+							display.setText(Integer.toString(percent));
+
+						}
+					}
+			}
+		});
+		btnPercent.setBackground(Color.WHITE);
+		btnPercent.setBounds(130, 274, 50, 50);
+		contentPane.add(btnPercent);
 
 	}
 }
