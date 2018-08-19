@@ -14,7 +14,6 @@ public class NumbersOf {
 			{
 				    if(sumOfPows(a,b)<=n)
 					count++;
-					System.out.println("A:"+a+" "+"B:"+b+" "+(int)sumOfPows(a,b));
 				a++;
 			}
 			a=2;
@@ -31,7 +30,7 @@ public class NumbersOf {
 	public static void main(String [] args)
 	{
 		NumbersOf test = new NumbersOf();
-		test.formAB(20000);
+		test.formAB((int)(2*Math.pow(10, 18)));
 	}
 
 }
