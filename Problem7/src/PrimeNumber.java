@@ -1,31 +1,27 @@
 
 public class PrimeNumber {
-	void primeNum(int nr) {
-		int i = 0;
-		int count = 0;
-		int num = 0;
-		int number=0;
-
-		while(count<nr) {
-			int counter = 0;
-			for (num = i; num >= 1; num--) {
-				if (i % num == 0) {
-					counter = counter + 1;
-				}
-			}
-			if (counter == 2) {
-				count++;
-				number = i;
-			}
-			i++;
+	Boolean primeNum(int nr) {
+		for (int i = 2; i < nr; i++) {
+			if (nr % i == 0)
+				return false;
 		}
-		System.out.println(number);
+		return true;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PrimeNumber test = new PrimeNumber();
-		test.primeNum(10001);
+		int count = 0;
+		for (int i = 2; i <= Integer.MAX_VALUE; i++) {
+			if (test.primeNum(i)) {
+				count++;
+			}
+			if (count == 10001) {
+				System.out.println(i);
+				break;
+
+			}
+		}
 	}
 
 }
