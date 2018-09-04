@@ -1,28 +1,32 @@
-package domain;
+package com.study.kurs.domain;
 
-
-import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.springframework.stereotype.Component;
 
 @Component
 public class Castle {
-	
+
 	private String name = "East Watch";
-	
-	public Castle()
-	{
+
+	public Castle() {
+
 	}
-	
+
 	@PostConstruct
-	public void build()
-	{
+	public void build() {
 		System.out.println("Wybudowano zamek " + name);
 	}
+
 	@PreDestroy
-	public void tearDown()
-	{
+	public void tearDown() {
 		System.out.println("Zaraz wyburzymy zamek " + name);
+	}
+	
+	@Override
+	public String toString()
+	{
+			return "Znajduje sie tu zamek o nazwie " +this.name;
 	}
 }
