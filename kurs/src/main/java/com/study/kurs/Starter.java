@@ -9,6 +9,8 @@ import com.study.kurs.domain.Castle;
 @Component
 public class Starter implements CommandLineRunner {
 
+
+	
 	@Autowired
 	Castle castle;
 	
