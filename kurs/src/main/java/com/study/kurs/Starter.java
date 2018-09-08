@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.study.kurs.domain.Castle;
 
-@Component
+@Component("starter")
 public class Starter implements CommandLineRunner {
 
 
