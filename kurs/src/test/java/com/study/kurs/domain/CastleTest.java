@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.study.kurs.domain.Castle;
 import com.study.kurs.domain.Knight;
+import com.study.kurs.domain.repository.KnightRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,7 +19,7 @@ public class CastleTest {
 	Knight knight;
 	
 	@Autowired
-	Castle castle;
+	KnightRepository castle;
 	
 	@Test
 	public void contextLoads() {

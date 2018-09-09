@@ -2,8 +2,6 @@ package com.study.kurs.domain;
 
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class Knight {
 
 	private String name;
@@ -49,7 +47,6 @@ public class Knight {
 		return age;
 	}
 
-	@Autowired
 	public void setQuest(Quest quest) {
 		System.out.println("Ustawiam zadanie dla rycerza.");
 		this.quest = quest;

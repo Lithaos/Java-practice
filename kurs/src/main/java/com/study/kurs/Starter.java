@@ -5,24 +5,32 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.study.kurs.domain.Castle;
-import com.study.kurs.domain.Tournament;
+import com.study.kurs.domain.repository.KnightRepository;
+import com.study.kurs.domain.repository.QuestRepository;
+import com.study.kurs.services.QuestService;
 
 @Component
-@Scope("prototype")
+@Scope("singleton")
 public class Starter implements CommandLineRunner {
 
 	@Autowired
-	Castle castle;
-
+	KnightRepository knightRepository;
+	
 	@Autowired
-	Tournament tournament;
+	QuestRepository questRepository;
+	
+	@Autowired
+	QuestService questService;
+
 
 	@Override
 	public void run(String... strings) throws Exception {
 
-		System.out.println(castle);
-		tournament.duel();
-		System.out.println(tournament);
+		
+		questService.assignRandomQuest("Lancelot");
+		questService.assignRandomQuest("Percival");
+		
+		System.out.println(knightRepository);
+		
 	}
 }
