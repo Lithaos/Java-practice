@@ -1,52 +1,19 @@
 package com.study.kurs.domain.repository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.stereotype.Repository;
 
 import com.study.kurs.domain.Knight;
 
-@Repository
-public class KnightRepository {
+public interface KnightRepository {
 
+	void createKnight(String name, int age);
 
-	Map<String, Knight> knights= new HashMap<>();
-	
-	public KnightRepository() {
-		
-	}
+	Collection<Knight> getAllKnights();
 
-	
-	public void createKnight(String name, int age) {
-		knights.put(name, new Knight(name, age));
-	}
-	
-	public Collection<Knight> getAllKnights(){
-		return knights.values();
-	}
+	Knight getKnight(String name);
 
-	public Knight getKnight(String name) {
-		return knights.get(name);
-	}
-	
-	public void deleteKnight(String name) {
-		knights.remove(name);
-	}
-	
-	@PostConstruct
-	public void build() {
-		createKnight("Lancelot",29);
-		createKnight("Percival",25);
-	}
+	void deleteKnight(String name);
 
-	@Override
-	public String toString() {
-		return "KnightRepository [knights=" + knights + "]";
-	}
+	void build();
 
-	
 }

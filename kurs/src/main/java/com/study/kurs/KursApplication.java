@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@PropertySource("classpath:castle.properties")
+@PropertySource("classpath:application.properties")
 @EnableScheduling
 public class KursApplication {
 
