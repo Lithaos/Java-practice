@@ -55,5 +55,9 @@ public class InMemoryRepository implements KnightRepository {
 		return "KnightRepository [knights=" + knights + "]";
 	}
 
+	@Override
+	public void createKnight(Knight knight) {
+		knights.put(knight.getName(),knight);
+	}
 	
 }
