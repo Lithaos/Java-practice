@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import com.study.kurs.domain.Knight;
+import com.study.kurs.utils.Ids;
 
 public class InMemoryRepository implements KnightRepository {
 
@@ -20,18 +21,11 @@ public class InMemoryRepository implements KnightRepository {
 	@Override
 	public void createKnight(String name, int age) {
 		Knight newKnight = new Knight(name, age);
-		newKnight.setId(getNewId());
+		newKnight.setId(Ids.getNewId(knights.keySet()));
 		knights.put(newKnight.getId(), new Knight(name, age));
 	}
 
-	private int getNewId() {
-		if (knights.isEmpty())
-			return 0;
-		else {
-			Integer integer = knights.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
-			return integer + 1;
-		}
-	}
+
 
 	@Override
 	public Collection<Knight> getAllKnights() {
@@ -65,7 +59,7 @@ public class InMemoryRepository implements KnightRepository {
 
 	@Override
 	public void createKnight(Knight knight) {
-		knight.setId(getNewId());
+		knight.setId(Ids.getNewId(knights.keySet()));
 		knights.put(knight.getId(), knight);
 	}
 
