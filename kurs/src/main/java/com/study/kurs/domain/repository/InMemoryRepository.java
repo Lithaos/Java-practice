@@ -9,60 +9,52 @@ import javax.annotation.PostConstruct;
 
 import com.study.kurs.domain.Knight;
 
-
 public class InMemoryRepository implements KnightRepository {
 
+	Map<Integer, Knight> knights = new HashMap<>();
 
-	Map<Integer, Knight> knights= new HashMap<>();
-	
 	public InMemoryRepository() {
-		
-	}
 
+	}
 
 	@Override
 	public void createKnight(String name, int age) {
-		Knight newKnight = new Knight(name,age);
+		Knight newKnight = new Knight(name, age);
 		newKnight.setId(getNewId());
 		knights.put(newKnight.getId(), new Knight(name, age));
 	}
-	
 
 	private int getNewId() {
-		if(knights.isEmpty())
+		if (knights.isEmpty())
 			return 0;
-		else
-		{
+		else {
 			Integer integer = knights.keySet().stream().max((o1, o2) -> o1.compareTo(o2)).get();
-            return integer+1;
+			return integer + 1;
 		}
 	}
 
-
 	@Override
-	public Collection<Knight> getAllKnights(){
+	public Collection<Knight> getAllKnights() {
 		return knights.values();
 	}
 
-
 	@Override
 	public Optional<Knight> getKnight(String name) {
-		
-		Optional<Knight> knightByName = knights.values().stream().filter(knight->knight.getName().equals(name)).findAny();
+
+		Optional<Knight> knightByName = knights.values().stream().filter(knight -> knight.getName().equals(name))
+				.findAny();
 		return knightByName;
 	}
-	
 
 	@Override
 	public void deleteKnight(Integer id) {
-		knights.remove(id);	
+		knights.remove(id);
 	}
-	
 
 	@Override
 	@PostConstruct
 	public void build() {
-		createKnight("Lancelot",29);
+		createKnight("Lancelot", 29);
 
 	}
 
@@ -77,10 +69,9 @@ public class InMemoryRepository implements KnightRepository {
 		knights.put(knight.getId(), knight);
 	}
 
-
 	@Override
 	public Knight getKnightById(Integer id) {
 		return knights.get(id);
 	}
-	
+
 }

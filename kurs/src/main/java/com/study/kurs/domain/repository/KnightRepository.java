@@ -16,7 +16,7 @@ public interface KnightRepository {
 	void deleteKnight(Integer id);
 
 	void build();
-	
+
 	void createKnight(Knight knight);
 
 	Knight getKnightById(Integer id);

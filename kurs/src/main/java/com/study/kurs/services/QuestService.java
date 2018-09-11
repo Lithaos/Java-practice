@@ -15,20 +15,19 @@ public class QuestService {
 
 	@Autowired
 	KnightRepository knightRepository;
-	
+
 	@Autowired
 	QuestRepository questRepository;
-	
+
 	final static Random rand = new Random();
-	
+
 	public void assignRandomQuest(String knightName) {
-		
+
 		List<Quest> allQuests = questRepository.getAll();
 		Quest randomQuest = allQuests.get(rand.nextInt(allQuests.size()));
-		knightRepository.getKnight(knightName).ifPresent(knight->knight.setQuest(randomQuest));;
+		knightRepository.getKnight(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
+		;
 		questRepository.deleteQuest(randomQuest);
 	}
-	
-	
-	
+
 }

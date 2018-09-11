@@ -8,7 +8,7 @@ public class Knight {
 	private String name;
 	private int age;
 	private int level;
-	
+
 	private Quest quest;
 
 //    public Knight(String name, int age, Quest quest) {

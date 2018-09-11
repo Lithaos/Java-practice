@@ -15,13 +15,12 @@ public class Starter implements CommandLineRunner {
 
 	@Autowired
 	KnightRepository knightRepository;
-	
+
 	@Autowired
 	QuestRepository questRepository;
-	
+
 	@Autowired
 	QuestService questService;
-
 
 	@Override
 	public void run(String... strings) throws Exception {

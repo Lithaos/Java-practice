@@ -3,17 +3,22 @@
 <head>
 <title>Add Knight</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
 </head>
 <body>
-<div class="container">
-					<p th:text="${knight.name}"></p>
-					<p th:text="${knight.age}"></p>
-					<p th:text="${knight.level}"></p>
-</div>
-</div>
+	<div class="container">
+
+		Aktualny czas <span
+			th:text="${timeComponent.time}" /> Posiadane zloto <span
+			th:text="${playerInformation.gold}" />
+		
+
+		<p th:text="${knight.name}"></p>
+			<p th:text="${knight.age}"></p>
+			<p th:text="${knight.level}"></p></div>
 </body>
 </html>
