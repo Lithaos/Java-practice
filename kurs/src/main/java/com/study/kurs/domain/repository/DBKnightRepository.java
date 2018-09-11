@@ -1,6 +1,9 @@
 package com.study.kurs.domain.repository;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -8,6 +11,8 @@ import com.study.kurs.domain.Knight;
 
 
 public class DBKnightRepository implements KnightRepository{
+	
+	Map<Integer, Knight> knights= new HashMap<>();
 	@Override
 	public void createKnight(String name, int age) {
 		System.out.println("Używam bazy danych");
@@ -22,14 +27,14 @@ public class DBKnightRepository implements KnightRepository{
 
 
 	@Override
-	public Knight getKnight(String name) {
-		System.out.println("Używam bazy danych");
-		return null;
+	public Optional<Knight> getKnight(String name) {
+		Optional<Knight> knightByName = knights.values().stream().filter(knight->knight.getName().equals(name)).findAny();
+		return knightByName;
 	}
 	
 
 	@Override
-	public void deleteKnight(String name) {
+	public void deleteKnight(Integer id) {
 		System.out.println("Używam bazy danych");
 	}
 	
@@ -44,5 +49,12 @@ public class DBKnightRepository implements KnightRepository{
 	public void createKnight(Knight knight) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public Knight getKnightById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
