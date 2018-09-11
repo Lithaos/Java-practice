@@ -2,11 +2,23 @@ package com.study.kurs.domain;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
+
 public class Knight {
 
 	private int id;
+
+	@NotNull
+	@Size(min=2,max=40, message="Imie rycerza musi miec miedzy 2, a 40 znakow")
 	private String name;
+
+	@NotNull
+	@Range(min = 18, max = 60, message="Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60")
 	private int age;
+
 	private int level;
 
 	private Quest quest;
