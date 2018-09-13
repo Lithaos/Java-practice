@@ -20,4 +20,8 @@ public interface KnightRepository {
 	void createKnight(Knight knight);
 
 	Knight getKnightById(Integer id);
+
+	default void updateKnight(int id, Knight knight) {
+		throw new UnsupportedOperationException();
+	}
 }

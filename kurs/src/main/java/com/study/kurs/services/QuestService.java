@@ -26,19 +26,21 @@ public class QuestService {
 		List<Quest> allQuests = questRepository.getAll();
 		Quest randomQuest = allQuests.get(rand.nextInt(allQuests.size()));
 		knightRepository.getKnight(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
-		
+
 		questRepository.deleteQuest(randomQuest);
 	}
 
 	public List<Quest> getAllNotStartetQuests() {
-		return questRepository.getAll().stream().filter(quest->!quest.isStarted()).collect(Collectors.toList());
+		return questRepository.getAll().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
 	}
-
 
 	@Autowired
 	public void setQuestRepository(QuestRepository questRepository) {
 		this.questRepository = questRepository;
 	}
-	
+
+	public void update(Quest quest) {
+		questRepository.update(quest);
+	}
 
 }
