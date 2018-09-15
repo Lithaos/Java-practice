@@ -2,11 +2,13 @@ package com.study.kurs.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.study.kurs.domain.Knight;
+import com.study.kurs.domain.PlayerInformation;
 import com.study.kurs.domain.repository.KnightRepository;
 
 @Component
@@ -14,6 +16,9 @@ public class KnightService {
 
 	@Autowired
 	KnightRepository knightRepository;
+
+	@Autowired
+	PlayerInformation playerInformation;
 
 	public List<Knight> getAllKnights() {
 		return new ArrayList<>(knightRepository.getAllKnights());
@@ -36,12 +41,34 @@ public class KnightService {
 	}
 
 	public int collectRewards() {
-		int sum = knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isComplited())
+		Predicate<Knight> knightPredicate = knight -> {
+			if (knight.getQuest() != null) {
+				return knight.getQuest().isComplited();
+			} else {
+				return false;
+			}
+		};
+
+		int sum = knightRepository.getAllKnights().stream().filter(knightPredicate)
 				.mapToInt(knight -> knight.getQuest().getReward()).sum();
-		knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isComplited()).forEach(knight -> {
+		knightRepository.getAllKnights().stream().filter(knightPredicate).forEach(knight -> {
 			knight.setQuest(null);
 		});
 
 		return sum;
+	}
+
+	public void getMyGold() {
+
+		List<Knight> allKnights = getAllKnights();
+		allKnights.forEach(knight -> {
+			if (knight.getQuest() != null) {
+				knight.getQuest().isComplited();
+			}
+		});
+
+		int currentGold = playerInformation.getGold();
+
+		playerInformation.setGold(currentGold + collectRewards());
 	}
 }

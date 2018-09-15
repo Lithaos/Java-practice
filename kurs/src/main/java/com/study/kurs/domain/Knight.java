@@ -12,11 +12,11 @@ public class Knight {
 	private int id;
 
 	@NotNull
-	@Size(min=2,max=40, message="Imie rycerza musi miec miedzy 2, a 40 znakow")
+	@Size(min = 2, max = 40, message = "Imie rycerza musi miec miedzy 2, a 40 znakow")
 	private String name;
 
 	@NotNull
-	@Range(min = 18, max = 60, message="Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60")
+	@Range(min = 18, max = 60, message = "Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60")
 	private int age;
 
 	private int level;
@@ -35,10 +35,12 @@ public class Knight {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		Knight knight = (Knight) o;
 		return age == knight.age;
 	}
@@ -67,7 +69,9 @@ public class Knight {
 	}
 
 	public void setQuest(Quest quest) {
-		quest.setStarted(true);
+		if (quest != null) {
+			quest.setStarted(true);
+		}
 		this.quest = quest;
 	}
 

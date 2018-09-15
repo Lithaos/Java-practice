@@ -49,14 +49,7 @@ public class QuestController {
 	@RequestMapping(value = "/checkQuests")
 	public String checkQuest() {
 
-		List<Knight> allKnights = knightService.getAllKnights();
-		allKnights.forEach(knight -> {
-			knight.getQuest().isComplited();
-		});
-
-		int currentGold = playerInformation.getGold();
-
-		playerInformation.setGold(currentGold + knightService.collectRewards());
+		knightService.getMyGold();
 
 		return "redirect:/knights";
 
