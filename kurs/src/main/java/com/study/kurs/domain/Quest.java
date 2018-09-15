@@ -2,9 +2,18 @@ package com.study.kurs.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Quest {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
 	private String description;
 
 	private int reward = 100;
@@ -24,6 +33,10 @@ public class Quest {
 	public Quest(int id, String description) {
 		this.id = id;
 		this.description = description;
+	}
+
+	public Quest() {
+
 	}
 
 	@Override
