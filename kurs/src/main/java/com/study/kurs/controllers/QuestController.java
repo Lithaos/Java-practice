@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.kurs.domain.Knight;
+import com.study.kurs.domain.PlayerInformation;
 import com.study.kurs.domain.Quest;
 import com.study.kurs.services.KnightService;
 import com.study.kurs.services.QuestService;
@@ -22,6 +23,9 @@ public class QuestController {
 
 	@Autowired
 	QuestService questService;
+
+	@Autowired
+	PlayerInformation playerInformation;
 
 	@RequestMapping("/assignQuest")
 	public String assignQuest(@RequestParam("knightId") Integer id, Model model) {
@@ -38,6 +42,22 @@ public class QuestController {
 		knightService.updateKnight(knight);
 		Quest quest = knight.getQuest();
 		questService.update(quest);
+		return "redirect:/knights";
+
+	}
+
+	@RequestMapping(value = "/checkQuests")
+	public String checkQuest() {
+
+		List<Knight> allKnights = knightService.getAllKnights();
+		allKnights.forEach(knight -> {
+			knight.getQuest().isComplited();
+		});
+
+		int currentGold = playerInformation.getGold();
+
+		playerInformation.setGold(currentGold + knightService.collectRewards());
+
 		return "redirect:/knights";
 
 	}

@@ -1,5 +1,7 @@
 package com.study.kurs.domain;
 
+import java.time.LocalDateTime;
+
 public class Quest {
 
 	private int id;
@@ -7,11 +9,17 @@ public class Quest {
 
 	private int reward = 100;
 
-	private int length = 30000;
+	protected int lengthInSeconds = 10;
 
 	private boolean started = false;
 
 	private boolean complited = false;
+
+	protected LocalDateTime startDate;
+
+	public LocalDateTime getStartDate() {
+		return startDate;
+	}
 
 	public Quest(int id, String description) {
 		this.id = id;
@@ -40,11 +48,11 @@ public class Quest {
 	}
 
 	public int getLength() {
-		return length;
+		return lengthInSeconds;
 	}
 
 	public void setLength(int length) {
-		this.length = length;
+		this.lengthInSeconds = length;
 	}
 
 	public boolean isStarted() {
@@ -52,15 +60,29 @@ public class Quest {
 	}
 
 	public void setStarted(boolean started) {
+		if (started) {
+			this.startDate = LocalDateTime.now();
+		}
 		this.started = started;
 	}
 
 	public boolean isComplited() {
-		return complited;
-	}
 
-	public void setComplited(boolean complited) {
-		this.complited = complited;
+		if (this.complited) {
+			return this.complited;
+		} else {
+			LocalDateTime now = LocalDateTime.now();
+
+			LocalDateTime questEndDate = this.startDate.plusSeconds(this.lengthInSeconds);
+
+			boolean isAfter = now.isAfter(questEndDate);
+			if (isAfter) {
+				this.complited = true;
+			}
+
+			return isAfter;
+		}
+
 	}
 
 	public int getId() {
