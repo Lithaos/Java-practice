@@ -26,4 +26,5 @@ public class MainConfig {
 		KnightRepository repo = new DBKnightRepository();
 		return repo;
 	}
+
 }
