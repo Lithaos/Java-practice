@@ -2,7 +2,7 @@ package com.study.kurs.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 import com.study.kurs.domain.repository.DBKnightRepository;
 import com.study.kurs.domain.repository.InMemoryRepository;
@@ -12,7 +12,7 @@ import com.study.kurs.domain.repository.KnightRepository;
 public class MainConfig {
 
 	@Bean(name = "inMemoryKnightRepository")
-	@Primary
+	@Profile("dev")
 	public KnightRepository createInMemoryRepo() {
 
 		KnightRepository repo = new InMemoryRepository();
@@ -20,6 +20,7 @@ public class MainConfig {
 	}
 
 	@Bean(name = "DBKnightRepository")
+	@Profile("prod")
 	public KnightRepository createDBRepo() {
 
 		KnightRepository repo = new DBKnightRepository();

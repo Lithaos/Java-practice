@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.study.kurs.components.TimeComponent;
 import com.study.kurs.domain.Knight;
 import com.study.kurs.domain.PlayerInformation;
+import com.study.kurs.domain.repository.PlayerInformationRepository;
 import com.study.kurs.services.KnightService;
 
 @Controller
@@ -25,7 +26,7 @@ public class KnightController {
 	TimeComponent timeComponent;
 
 	@Autowired
-	PlayerInformation playerInformation;
+	PlayerInformationRepository playerInformationRepository;
 
 	@Autowired
 	KnightService service;
@@ -33,43 +34,44 @@ public class KnightController {
 	@RequestMapping("/knights")
 	public String getKnights(Model model) {
 		List<Knight> allKnights = service.getAllKnights();
+		PlayerInformation playerInformation = playerInformationRepository.getFirst();
 		model.addAttribute("knights", allKnights);
-		model.addAttribute("timeComponent", timeComponent);
-		model.addAttribute("playerInformation", playerInformation);
+		model.addAttribute("timecomponent", timeComponent);
+		model.addAttribute("playerinformation", playerInformation);
 		return "knights";
 	}
 
 	@RequestMapping("/knight")
 	public String getKnight(@RequestParam("id") Integer id, Model model) {
 		Knight knight = service.getKnight(id);
+		PlayerInformation playerInformation = playerInformationRepository.getFirst();
 		model.addAttribute("knight", knight);
-		model.addAttribute("timeComponent", timeComponent);
-		model.addAttribute("playerInformation", playerInformation);
+		model.addAttribute("timecomponent", timeComponent);
+		model.addAttribute("playerinformation", playerInformation);
 		return "knight";
 	}
 
 	@RequestMapping("/newKnight")
 	public String createKnight(Model model) {
 		model.addAttribute("knight", new Knight());
-		model.addAttribute("timeComponent", timeComponent);
-		model.addAttribute("playerInformation", playerInformation);
+		model.addAttribute("timecomponent", timeComponent);
+		PlayerInformation playerInformation = playerInformationRepository.getFirst();
+		model.addAttribute("playerinformation", playerInformation);
 		return "knightform";
 	}
 
 	@RequestMapping(value = "/knights", method = RequestMethod.POST)
-	public String saveKnights(@Valid Knight knight, BindingResult bindingResult) {
+	public String saveKnight(@Valid Knight knight, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			System.out.println("There were errors");
-			bindingResult.getAllErrors().forEach(error->{
-				System.out.println(error.getObjectName()+ " " + error.getDefaultMessage());
+			bindingResult.getAllErrors().forEach(error -> {
+				System.out.println(error.getObjectName() + " " + error.getDefaultMessage());
 			});
 			return "knightform";
 		} else {
-
 			service.saveKnight(knight);
 			return "redirect:/knights";
-
 		}
 
 	}

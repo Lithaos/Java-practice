@@ -6,34 +6,44 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import com.study.kurs.domain.Knight;
 
 public class DBKnightRepository implements KnightRepository {
 
+	@PersistenceContext
+	private EntityManager em;
+
 	Map<Integer, Knight> knights = new HashMap<>();
 
 	@Override
+	@Transactional
 	public void createKnight(String name, int age) {
-		System.out.println("Używam bazy danych");
+
+		Knight knight = new Knight(name, age);
+		em.persist(knight);
 	}
 
 	@Override
 	public Collection<Knight> getAllKnights() {
-		System.out.println("Używam bazy danych");
-		return null;
+		return em.createQuery("from Knight", Knight.class).getResultList();
 	}
 
 	@Override
 	public Optional<Knight> getKnight(String name) {
-		Optional<Knight> knightByName = knights.values().stream().filter(knight -> knight.getName().equals(name))
-				.findAny();
-		return knightByName;
+
+		Knight knightByName = em.createQuery("from Knight k where k.name=:name", Knight.class)
+				.setParameter("name", name).getSingleResult();
+		return Optional.ofNullable(knightByName);
 	}
 
 	@Override
+	@Transactional
 	public void deleteKnight(Integer id) {
-		System.out.println("Używam bazy danych");
+		em.remove(id);
 	}
 
 	@Override
@@ -43,14 +53,21 @@ public class DBKnightRepository implements KnightRepository {
 	}
 
 	@Override
+	@Transactional
 	public void createKnight(Knight knight) {
-		// TODO Auto-generated method stub
+
+		em.persist(knight);
 
 	}
 
 	@Override
 	public Knight getKnightById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Knight.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void updateKnight(int id, Knight knight) {
+		em.merge(knight);
 	}
 }

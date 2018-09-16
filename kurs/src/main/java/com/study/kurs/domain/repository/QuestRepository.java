@@ -1,39 +1,40 @@
 package com.study.kurs.domain.repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import com.study.kurs.domain.Quest;
-import com.study.kurs.utils.Ids;
 
 @Repository
 public class QuestRepository {
 
-	Map<Integer, Quest> quests = new HashMap<>();
+	@PersistenceContext
+	private EntityManager em;
 
 	Random rand = new Random();
 
+	@Transactional
 	public void createQuest(String description) {
-		int newId = Ids.getNewId(quests.keySet());
-		Quest newQuest = new Quest(newId, description);
-		quests.put(newId, newQuest);
+		Quest newQuest = new Quest(description);
+		em.persist(newQuest);
 	}
 
 	public List<Quest> getAll() {
-		return new ArrayList<>(quests.values());
+		return em.createQuery("from Quest", Quest.class).getResultList();
 	}
 
+	@Transactional
 	public void deleteQuest(Quest quest) {
-		quests.remove(quest.getId());
-
+		em.remove(quest);
 	}
 
 	@PostConstruct
@@ -41,12 +42,8 @@ public class QuestRepository {
 
 	}
 
-	@Override
-	public String toString() {
-		return "QuestRepository [quests=" + quests + "]";
-	}
-
-	@Scheduled(fixedDelay = 50000)
+	@Scheduled(fixedDelayString = "${questCreationDelay}")
+	@Transactional
 	public void createRandomQuest() {
 		List<String> descriptions = new ArrayList<>();
 
@@ -57,15 +54,15 @@ public class QuestRepository {
 
 		String description = descriptions.get(rand.nextInt(descriptions.size()));
 		createQuest(description);
-
 	}
 
+	@Transactional
 	public void update(Quest quest) {
-		quests.put(quest.getId(), quest);
+		em.merge(quest);
 	}
 
 	public Quest getQuest(Integer id) {
-		return quests.get(id);
+		return em.find(Quest.class, id);
 
 	}
 }

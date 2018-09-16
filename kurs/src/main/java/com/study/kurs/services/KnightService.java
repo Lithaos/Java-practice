@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.study.kurs.domain.Knight;
 import com.study.kurs.domain.PlayerInformation;
 import com.study.kurs.domain.repository.KnightRepository;
+import com.study.kurs.domain.repository.PlayerInformationRepository;
+import com.study.kurs.domain.repository.QuestRepository;
 
 @Component
 public class KnightService {
@@ -18,7 +22,10 @@ public class KnightService {
 	KnightRepository knightRepository;
 
 	@Autowired
-	PlayerInformation playerInformation;
+	QuestRepository questRepository;
+
+	@Autowired
+	PlayerInformationRepository playerInformation;
 
 	public List<Knight> getAllKnights() {
 		return new ArrayList<>(knightRepository.getAllKnights());
@@ -58,17 +65,21 @@ public class KnightService {
 		return sum;
 	}
 
+	@Transactional
 	public void getMyGold() {
 
 		List<Knight> allKnights = getAllKnights();
 		allKnights.forEach(knight -> {
 			if (knight.getQuest() != null) {
-				knight.getQuest().isComplited();
+				boolean completed = knight.getQuest().isComplited();
+				if (completed) {
+					questRepository.update(knight.getQuest());
+				}
 			}
 		});
 
-		int currentGold = playerInformation.getGold();
-
-		playerInformation.setGold(currentGold + collectRewards());
+		PlayerInformation first = playerInformation.getFirst();
+		int currentGold = first.getGold();
+		first.setGold(currentGold + collectRewards());
 	}
 }
