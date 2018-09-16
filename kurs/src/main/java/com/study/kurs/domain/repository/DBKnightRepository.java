@@ -43,7 +43,8 @@ public class DBKnightRepository implements KnightRepository {
 	@Override
 	@Transactional
 	public void deleteKnight(Integer id) {
-		em.remove(id);
+
+		em.remove(em.find(Knight.class, id));
 	}
 
 	@Override

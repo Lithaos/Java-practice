@@ -51,7 +51,7 @@ public class KnightController {
 		return "knight";
 	}
 
-	@RequestMapping("/newKnight")
+	@RequestMapping("/newknight")
 	public String createKnight(Model model) {
 		model.addAttribute("knight", new Knight());
 		model.addAttribute("timecomponent", timeComponent);

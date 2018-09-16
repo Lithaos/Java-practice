@@ -27,7 +27,7 @@ public class Knight {
 	@Range(min = 18, max = 60, message = "Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60")
 	private int age;
 
-	private int level;
+	private int level = 1;
 
 	@OneToOne
 	private Quest quest;
