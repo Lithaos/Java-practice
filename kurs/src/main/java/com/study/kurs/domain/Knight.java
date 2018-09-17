@@ -29,7 +29,7 @@ public class Knight {
 
 	private int level = 1;
 
-	private int experience = 0;
+	private int experience;
 
 	public int getExperience() {
 		return experience;

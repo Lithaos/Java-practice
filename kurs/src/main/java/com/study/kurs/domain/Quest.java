@@ -21,7 +21,7 @@ public class Quest {
 
 	Random rand = new Random();
 
-	private int experience = rand.nextInt(100) + 1;
+	private int questExperience = rand.nextInt(100) + 1;
 
 	protected int lengthInSeconds = 10;
 
@@ -115,12 +115,12 @@ public class Quest {
 		this.id = id;
 	}
 
-	public int getExperience() {
-		return experience;
+	public int getQuestExperience() {
+		return questExperience;
 	}
 
-	public void setExperience(int experience) {
-		this.experience = experience;
+	public void setQuestExperience(int questExperience) {
+		this.questExperience = questExperience;
 	}
 
 }
