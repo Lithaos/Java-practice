@@ -35,7 +35,7 @@ public class QuestController {
 
 	@RequestMapping(value = "/assignQuest", method = RequestMethod.POST)
 	public String assignQuest(Knight knight, BindingResult result) {
-		System.out.println(knight.getExperience());
+		System.out.println(result);
 		knightService.updateKnight(knight);
 //        Quest quest = knight.getQuest();
 //        questService.update(quest);

@@ -70,7 +70,7 @@ public class KnightService {
 			System.out.println(knight.getExperience());
 			if (knight.getQuest() != null) {
 				if (knight.getQuest().isComplited()) {
-					knight.setExperience(knight.getExperience() + knight.getQuest().getQuestExperience());
+					knight.setExperience(knight.getExperience() + knight.getQuest().getExperience());
 					int knightExp = knight.getExperience();
 					if (knightExp >= 100) {
 						knight.setLevel(knight.getLevel() + knightExp / 100);
