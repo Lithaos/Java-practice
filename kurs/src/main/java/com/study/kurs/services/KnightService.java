@@ -65,9 +65,32 @@ public class KnightService {
 		return sum;
 	}
 
+	public int collectExperience() {
+		Predicate<Knight> knightPredicate = knight -> {
+			if (knight.getQuest() != null) {
+				return knight.getQuest().isComplited();
+			} else {
+				return false;
+			}
+		};
+
+		int exp = knightRepository.getAllKnights().stream().filter(knightPredicate)
+				.mapToInt(knight -> knight.getQuest().getExperience()).sum();
+		return exp;
+	}
+
+	public void checkExperience() {
+		knightRepository.getAllKnights().stream().forEach(knight -> {
+			int knightExp = knight.getExperience();
+			if (knightExp >= 100) {
+				knight.setLevel(knight.getLevel() + 1);
+				knight.setExperience(0);
+			}
+		});
+	}
+
 	@Transactional
 	public void getMyGold() {
-
 		List<Knight> allKnights = getAllKnights();
 		allKnights.forEach(knight -> {
 			if (knight.getQuest() != null) {
@@ -79,7 +102,11 @@ public class KnightService {
 		});
 
 		PlayerInformation first = playerInformation.getFirst();
+
 		int currentGold = first.getGold();
+		int currentExp = first.getExperience();
+		first.setExperience(currentExp + collectExperience());
 		first.setGold(currentGold + collectRewards());
 	}
+
 }

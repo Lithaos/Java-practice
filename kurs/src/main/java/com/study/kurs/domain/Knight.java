@@ -29,6 +29,16 @@ public class Knight {
 
 	private int level = 1;
 
+	private int experience = 0;
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
 	@OneToOne
 	private Quest quest;
 

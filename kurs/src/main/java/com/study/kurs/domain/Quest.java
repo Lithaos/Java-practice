@@ -1,6 +1,7 @@
 package com.study.kurs.domain;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,10 @@ public class Quest {
 	private String description;
 
 	private int reward = 100;
+
+	Random rand = new Random();
+
+	private int experience = rand.nextInt(100) + 1;
 
 	protected int lengthInSeconds = 10;
 
@@ -108,6 +113,14 @@ public class Quest {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
 	}
 
 }
