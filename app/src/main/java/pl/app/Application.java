@@ -22,5 +22,5 @@ public class Application {
 			return "formularz"; } 
 		else {
 				return "wynik"; }
-		}
+	}
 }
