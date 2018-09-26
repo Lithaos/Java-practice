@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>dodaj konto</title>
+<title>Witaj</title>
 </head>
 <body>
-	
+	<h1>Witaj!</h1>
+	<p>Jest to prosta aplikacja która zawiera formularz rejestracyjny.</p>
+	<a href="/formularz">Jeśli chcesz się zarejestrować kliknij w ten link.</a>
 </body>
 </html>

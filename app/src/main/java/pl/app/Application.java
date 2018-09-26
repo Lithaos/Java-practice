@@ -11,16 +11,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class Application {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home() {
+		return "index";
+	}
+
 	@RequestMapping(value = "/formularz", method = RequestMethod.GET)
 	public String formularz(@ModelAttribute("form") Form form) {
 		return "formularz";
 	}
 
 	@RequestMapping(value = "/formularz", method = RequestMethod.POST)
-	public String obsluzFormularz(HttpServletRequest request,@ModelAttribute("form") @Valid Form form, BindingResult result) {
-		if (request.getMethod().equalsIgnoreCase("get") || result.hasErrors()) { 
-			return "formularz"; } 
-		else {
-				return "wynik"; }
+	public String obsluzFormularz(HttpServletRequest request, @ModelAttribute("form") @Valid Form form,
+			BindingResult result) {
+		if (request.getMethod().equalsIgnoreCase("get") || result.hasErrors()) {
+			return "formularz";
+		} else {
+			return "wynik";
+		}
 	}
-} 
+}
