@@ -23,4 +23,4 @@ public class Application {
 		else {
 				return "wynik"; }
 	}
-}
+} 
